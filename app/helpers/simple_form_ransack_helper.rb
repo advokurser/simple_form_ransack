@@ -10,11 +10,9 @@ module SimpleFormRansackHelper
     opts[:method] = "get" unless opts[:method]
     args << opts
 
-    model_class = ransack.klass
-    sample_model = model_class.new
     ransack_params = ransack.instance_variable_get(:@_registered_params)
 
-    simple_form_for(sample_model, *args) do |form|
+    simple_form_for(ransack, *args) do |form|
       form_proxy = SimpleFormRansack::FormProxy.new(
         ransack: ransack,
         form: form,
@@ -36,11 +34,9 @@ module SimpleFormRansackHelper
     opts[:method] = "get" unless opts[:method]
     args << opts
 
-    model_class = ransack.klass
-    sample_model = model_class.new
     ransack_params = ransack.instance_variable_get(:@_registered_params)
 
-    simple_fields_for(sample_model, *args) do |form|
+    simple_fields_for(ransack, *args) do |form|
       form_proxy = SimpleFormRansack::FormProxy.new(
         ransack: ransack,
         form: form,
